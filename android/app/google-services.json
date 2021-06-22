@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "647543836563",
+    "project_id": "crono2",
+    "storage_bucket": "crono2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647543836563:android:5b08d63e60daef2f202266",
+        "android_client_info": {
+          "package_name": "com.example.tcc_crono"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647543836563-3memitcopo3oq6dncicrc6peumjvffmf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm9IvN_PhWEu70ld04ncdOBzV-WdQsPkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647543836563-3memitcopo3oq6dncicrc6peumjvffmf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
