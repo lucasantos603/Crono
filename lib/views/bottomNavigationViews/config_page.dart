@@ -417,33 +417,20 @@ class _ConfigPageState extends State<ConfigPage> {
                                                 await FirebaseAuth.instance
                                                     .signOut();
                                                 Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          InitialPage()),
-                                                );
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            InitialPage()));
                                               },
                                             ),
-                                            //onTap: () => _deletarDados()),
                                           ],
                                         ),
                                       ),
                                       ButtonWidget.red(
-                                          label: "Cancelar",
-                                          onTap: () => Navigator.pop(context)),
-                                      /*RaisedButton(
-                                        child: Text("Confirmar"),
-                                        onPressed: () {
-                                          _deletarDados();
-                                        },
+                                        label: "Cancelar",
+                                        onTap: () => Navigator.pop(context),
                                       ),
-                                      // ignore: deprecated_member_use
-                                      RaisedButton(
-                                        child: Text("Cancelar"),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                      )*/
                                     ],
                                   ));
                         },
@@ -457,10 +444,10 @@ class _ConfigPageState extends State<ConfigPage> {
                         onTap: () async {
                           await FirebaseAuth.instance.signOut();
                           Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => InitialPage()),
-                          );
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      InitialPage()));
                         },
                       ),
                     ],

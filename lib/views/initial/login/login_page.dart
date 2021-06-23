@@ -70,8 +70,16 @@ class _LoginPageState extends State<LoginPage> {
         .signInWithEmailAndPassword(
             email: usuario.email, password: usuario.senha)
         .then((firebaseUser) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => DefaultPage()));
+      String user = auth.currentUser.uid;
+      if (user != null) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => DefaultPage()));
+      } else {
+        setState(() {
+          _mensagemErro = "Erro ao autenticar usuário, essa conta não existe";
+        });
+      }
+
       //MaterialPageRoute(builder: (context) => TestePorosidadePage()));
     }).catchError((error) {
       setState(() {
