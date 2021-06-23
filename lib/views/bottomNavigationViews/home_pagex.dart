@@ -1,7 +1,7 @@
 // import 'dart:html';
 
 import 'dart:convert';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 15),
             Text(
-                "Seu último resultado do teste de porosidade: ${ultimoResultado}"),
+                "No seu último resultado do teste de porosidade o seu fio ${ultimoResultado}, siga a ordem de tratamento abaixo:"),
             //Padding(
             //padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
             //child: Column(
@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  selectedTextStyle: TextStyle(color: Colors.white),
+                  selectedTextStyle: TextStyle(color: AppColors.white),
                   todayDecoration: BoxDecoration(
                     color: AppColors.black,
                     shape: BoxShape.rectangle,

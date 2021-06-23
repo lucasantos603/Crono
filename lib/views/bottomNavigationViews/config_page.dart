@@ -135,7 +135,7 @@ class _ConfigPageState extends State<ConfigPage> {
                                       StatefulBuilder(builder:
                                           (BuildContext context,
                                               StateSetter setState) {
-                                    return Container(
+                                    return SingleChildScrollView(
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 15),
                                       child: Form(
@@ -311,7 +311,7 @@ class _ConfigPageState extends State<ConfigPage> {
                                                 )
                                               ],
                                             ),
-                                            SizedBox(height: 30),
+                                            SizedBox(height: 20),
                                             // ignore: deprecated_member_use
                                             Center(
                                               child: ButtonWidget.green(

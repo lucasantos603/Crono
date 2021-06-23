@@ -7,6 +7,7 @@ import 'package:CRONO/views/bottomNavigationViews/default_page.dart';
 import 'package:CRONO/views/bottomNavigationViews/home_pagex.dart';
 import 'package:CRONO/views/initial/initial_page.dart';
 import 'package:CRONO/views/teste/resultado_page.dart';
+//import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:tcc_crono/views/teste/calendar_page.dart';
 
 import 'views/teste/teste_porosidade_page.dart';
@@ -18,6 +19,7 @@ void main() async {
     MaterialApp(
       title: 'CRONO',
       home: InitialPage(),
+      //supportedLocales: [const Locale('pt', 'BR')],
       debugShowCheckedModeBanner: false,
     ),
   );
