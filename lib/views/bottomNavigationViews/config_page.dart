@@ -411,8 +411,20 @@ class _ConfigPageState extends State<ConfigPage> {
                                         child: Column(
                                           children: [
                                             ButtonWidget.green(
-                                                label: "Confirmar",
-                                                onTap: () => _deletarDados()),
+                                              label: "Confirmar",
+                                              onTap: () async {
+                                                _deletarDados();
+                                                await FirebaseAuth.instance
+                                                    .signOut();
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          InitialPage()),
+                                                );
+                                              },
+                                            ),
+                                            //onTap: () => _deletarDados()),
                                           ],
                                         ),
                                       ),
