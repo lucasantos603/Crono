@@ -1,5 +1,6 @@
 import 'package:CRONO/core/core.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
+import 'package:CRONO/views/teste/teste_porosidade_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _ConfigPageState extends State<ConfigPage> {
         context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
-  void _editarDados() async{
+  void _editarDados() async {
     _tratamentoDozeMeses = _radioDozeMeses == 1 ? true : false;
 
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -104,6 +105,7 @@ class _ConfigPageState extends State<ConfigPage> {
           //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Column(
             children: [
+              SizedBox(height: 10),
               Row(
                 children: [
                   Text(
@@ -123,7 +125,7 @@ class _ConfigPageState extends State<ConfigPage> {
                       InkWell(
                         child: Text(
                           "• Editar Perfil",
-                          style: AppTextStyles.bodyLink,
+                          style: AppTextStyles.menuItemBold,
                           textAlign: TextAlign.start,
                         ),
                         onTap: () {
@@ -134,9 +136,15 @@ class _ConfigPageState extends State<ConfigPage> {
                                           (BuildContext context,
                                               StateSetter setState) {
                                     return Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15, vertical: 15),
                                       child: Form(
                                         key: _formKey,
                                         child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
                                           children: <Widget>[
                                             Text(
                                               "Nome:",
@@ -263,12 +271,15 @@ class _ConfigPageState extends State<ConfigPage> {
                                             ),
                                             SizedBox(height: 15),
                                             Text(
-                                              "Fez tratamento com química nos últimos 12 meses?",
+                                              "Fez tratamento com química\nnos últimos 12 meses?",
                                               textAlign: TextAlign.left,
                                               style: AppTextStyles.labelBold,
                                             ),
                                             SizedBox(height: 10),
                                             Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: <Widget>[
                                                 Expanded(
                                                   flex: 1,
@@ -300,15 +311,18 @@ class _ConfigPageState extends State<ConfigPage> {
                                                 )
                                               ],
                                             ),
+                                            SizedBox(height: 30),
                                             // ignore: deprecated_member_use
-                                            ButtonWidget.green(
-                                                label: "Enviar",
-                                                onTap: () async {
-                                                  if (_formKey.currentState
-                                                      .validate()) {
-                                                    _editarDados();
-                                                  }
-                                                }),
+                                            Center(
+                                              child: ButtonWidget.green(
+                                                  label: "Enviar",
+                                                  onTap: () async {
+                                                    if (_formKey.currentState
+                                                        .validate()) {
+                                                      _editarDados();
+                                                    }
+                                                  }),
+                                            ),
                                             /*RaisedButton(
                                               color: Colors.blue,
                                               textColor: Colors.white,
@@ -330,10 +344,26 @@ class _ConfigPageState extends State<ConfigPage> {
                                   })));
                         },
                       ),
+                      SizedBox(height: 15),
+                      InkWell(
+                        child: Text(
+                          "• Refazer teste de porosidade",
+                          style: AppTextStyles.menuItemBold,
+                        ),
+                        onTap: () {
+                          print("Clicado: Termos de uso");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TestePorosidadePage()),
+                          );
+                        },
+                      ),
+                      SizedBox(height: 15),
                       InkWell(
                         child: Text(
                           "• Ajuda",
-                          style: AppTextStyles.bodyLink,
+                          style: AppTextStyles.menuItemBold,
                         ),
                         onTap: () {
                           //print("Clicado: Ajuda");
@@ -344,10 +374,11 @@ class _ConfigPageState extends State<ConfigPage> {
                           );
                         },
                       ),
+                      SizedBox(height: 15),
                       InkWell(
                         child: Text(
                           "• Termos de uso",
-                          style: AppTextStyles.bodyLink,
+                          style: AppTextStyles.menuItemBold,
                         ),
                         onTap: () {
                           print("Clicado: Termos de uso");
@@ -358,21 +389,33 @@ class _ConfigPageState extends State<ConfigPage> {
                           );
                         },
                       ),
+                      SizedBox(height: 15),
                       InkWell(
                         child: Text(
                           "• Desativar Conta",
-                          style: AppTextStyles.bodyLink,
+                          style: AppTextStyles.menuItemBold,
                         ),
                         onTap: () {
                           showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
-                                    title: Text("Deseja deletar a conta?"),
+                                    title: Text(
+                                      "Deseja deletar a conta?",
+                                      textAlign: TextAlign.center,
+                                    ),
                                     actions: [
                                       // ignore: deprecated_member_use
-                                      ButtonWidget.green(
-                                          label: "Confirmar",
-                                          onTap: () => _deletarDados()),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 10),
+                                        child: Column(
+                                          children: [
+                                            ButtonWidget.green(
+                                                label: "Confirmar",
+                                                onTap: () => _deletarDados()),
+                                          ],
+                                        ),
+                                      ),
                                       ButtonWidget.red(
                                           label: "Cancelar",
                                           onTap: () => Navigator.pop(context)),
@@ -393,10 +436,11 @@ class _ConfigPageState extends State<ConfigPage> {
                                   ));
                         },
                       ),
+                      SizedBox(height: 15),
                       InkWell(
                         child: Text(
                           "• Sair da conta",
-                          style: AppTextStyles.bodyLink,
+                          style: AppTextStyles.menuItemBold,
                         ),
                         onTap: () async {
                           await FirebaseAuth.instance.signOut();

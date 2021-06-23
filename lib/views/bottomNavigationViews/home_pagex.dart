@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:CRONO/shared/widgets/button_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -162,19 +163,25 @@ class _HomePageState extends State<HomePage> {
               style: AppTextStyles.heading30,
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             Text(
                 "Seu último resultado do teste de porosidade: ${ultimoResultado}"),
+            //Padding(
+            //padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+            //child: Column(
             ultimoResultado == 'Afundou Imediatamente'
-                ? Image.asset(AppImages.cronogramaafundouimediamente)
+                ? Image.asset(AppImages.cronogramaafundouimediamente,
+                    fit: BoxFit.contain)
                 : Text(""),
             ultimoResultado == 'Afundou Lentamente'
-                ? Image.asset(AppImages.cronogramaafundoulentamente)
+                ? Image.asset(AppImages.cronogramaafundoulentamente,
+                    fit: BoxFit.contain)
                 : Text(""),
             ultimoResultado == 'Boiou'
-                ? Image.asset(AppImages.cronogramaboiou)
+                ? Image.asset(AppImages.cronogramaboiou, fit: BoxFit.contain)
                 : Text(""),
-            SizedBox(height: 40),
+            //),
+            SizedBox(height: 15),
             Text(
               "Cronograma atual:",
               style: AppTextStyles.body,
@@ -183,8 +190,7 @@ class _HomePageState extends State<HomePage> {
 
             SizedBox(
               child: TableCalendar(
-                // locale: 'en-US',
-
+                //locale: 'pt-BR',
                 focusedDay: focusedDay,
                 firstDay: DateTime(2000),
                 lastDay: DateTime(2050),
@@ -216,13 +222,13 @@ class _HomePageState extends State<HomePage> {
                 calendarStyle: CalendarStyle(
                   isTodayHighlighted: true,
                   selectedDecoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: AppColors.blue,
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   selectedTextStyle: TextStyle(color: Colors.white),
                   todayDecoration: BoxDecoration(
-                    color: Colors.black,
+                    color: AppColors.black,
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -242,20 +248,51 @@ class _HomePageState extends State<HomePage> {
                     titleCentered: true,
                     formatButtonShowsNext: true,
                     formatButtonDecoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: AppColors.blue,
                         borderRadius: BorderRadius.circular(5.0)),
                     formatButtonTextStyle: TextStyle(
-                      color: Colors.white,
+                      color: AppColors.white,
                     )),
               ),
             ),
 
-            ..._getEventfromDay(selectedDay).map((Event event) => ListTile(
-                  title: Text(
-                    event.title,
-                  ),
-                  subtitle: Text(event.marca + " - " + event.tratamento),
-                )),
+            ..._getEventfromDay(selectedDay).map(
+              (Event event) => ListTile(
+                title: Text(
+                  event.title + " - " + event.marca,
+                  style: AppTextStyles.body,
+                ),
+                subtitle:
+                    Text(event.tratamento, style: AppTextStyles.labelBold),
+                /*
+                  Row(
+                    children: [
+                      event.tratamento == 'Hidratação'
+                          ? Text(event.tratamento,
+                              style: AppTextStyles.labelHidratacao)
+                          : "",
+                      event.tratamento == 'Nutrição'
+                          ? Text(event.tratamento,
+                              style: AppTextStyles.labelNutricao)
+                          : "",
+                      event.tratamento == 'Reconstrução'
+                          ? Text(event.tratamento,
+                              style: AppTextStyles.labelReconstrucao)
+                          : ""
+                    ],
+                  )*/
+
+                /*
+                 Text(event.tratamento,
+                    style: AppTextStyles.labelHidratacao
+                    //event.tratamento == 'Hidratação' ? AppTextStyles.labelHidratacao : AppTextStyles.body,
+                    //event.tratamento == 'Nutrição' ? AppTextStyles.labelNutricao : AppTextStyles.body,
+                    //event.tratamento == 'Reconstrução' ? AppTextStyles.labelReconstrucao : AppTextStyles.body,
+                    ),
+*/
+                //subtitle: Text(event.marca + " - " + event.tratamento),
+              ),
+            ),
             // SizedBox(height: 20),
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -283,11 +320,16 @@ class _HomePageState extends State<HomePage> {
                           builder:
                               (BuildContext context, StateSetter setState) {
                         return SizedBox(
-                          height: 450,
+                          //height: 450,
                           child: SingleChildScrollView(
                             child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 15),
                               child: Expanded(
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   children: [
                                     Text(
                                       "Nome do produto:",
@@ -360,7 +402,9 @@ class _HomePageState extends State<HomePage> {
                                             Expanded(
                                               flex: 1,
                                               child: RadioListTile(
-                                                  title: Text("Hidratação"),
+                                                  title: Text("Hidratação",
+                                                      style: AppTextStyles
+                                                          .labelHidratacao),
                                                   value: 0,
                                                   groupValue: _estagio,
                                                   onChanged: (int escolha) {
@@ -376,7 +420,11 @@ class _HomePageState extends State<HomePage> {
                                             Expanded(
                                               flex: 1,
                                               child: RadioListTile(
-                                                  title: Text("Nutrição"),
+                                                  title: Text(
+                                                    "Nutrição",
+                                                    style: AppTextStyles
+                                                        .labelNutricao,
+                                                  ),
                                                   value: 1,
                                                   groupValue: _estagio,
                                                   onChanged: (int escolha) {
@@ -392,7 +440,11 @@ class _HomePageState extends State<HomePage> {
                                             Expanded(
                                               flex: 1,
                                               child: RadioListTile(
-                                                  title: Text("Reconstrução"),
+                                                  title: Text(
+                                                    "Reconstrução",
+                                                    style: AppTextStyles
+                                                        .labelReconstrucao,
+                                                  ),
                                                   value: 2,
                                                   groupValue: _estagio,
                                                   onChanged: (int escolha) {
@@ -403,7 +455,53 @@ class _HomePageState extends State<HomePage> {
                                             )
                                           ],
                                         ),
+                                        SizedBox(height: 30),
                                         // ignore: deprecated_member_use
+                                        ButtonWidget.green(
+                                          label: "Adicionar",
+                                          onTap: () {
+                                            _adicionarEvento();
+                                            if (_eventController.text.isEmpty) {
+                                            } else {
+                                              if (selectedEvents[selectedDay] !=
+                                                  null) {
+                                                selectedEvents[selectedDay].add(
+                                                  Event(
+                                                    title:
+                                                        _eventController.text,
+                                                    marca:
+                                                        _marcaController.text,
+                                                    tratamento:
+                                                        _tratamentoController
+                                                            .text,
+                                                  ),
+                                                );
+                                              } else {
+                                                selectedEvents[selectedDay] = [
+                                                  Event(
+                                                      title:
+                                                          _eventController.text,
+                                                      marca:
+                                                          _marcaController.text,
+                                                      tratamento:
+                                                          _tratamentoController
+                                                              .text)
+                                                ];
+                                              }
+                                            }
+                                            // Navigator.pop(context);
+                                            _eventController.clear();
+                                            _marcaController.clear();
+                                            // _tratamentoController.clear();
+                                            setState(() {});
+
+                                            Navigator.pop(context);
+
+                                            return;
+                                          },
+                                        ),
+
+                                        /*
                                         RaisedButton(
                                           onPressed: () {
                                             _adicionarEvento();
@@ -447,6 +545,7 @@ class _HomePageState extends State<HomePage> {
                                           },
                                           child: Text("Adicionar"),
                                         )
+                                        */
                                       ],
                                     ),
                                   ],
@@ -458,6 +557,7 @@ class _HomePageState extends State<HomePage> {
                       }))),
               icon: Icon(Icons.add),
             ),
+            SizedBox(height: 20),
           ],
         ),
       ),

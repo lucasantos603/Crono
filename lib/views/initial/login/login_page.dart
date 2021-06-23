@@ -1,3 +1,4 @@
+import 'package:CRONO/views/bottomNavigationViews/default_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_core/firebase_core.dart';
@@ -9,7 +10,7 @@ import 'package:CRONO/models/Usuario.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
 // import 'package:CRONO/views/initial/initial_page.dart';
 // import 'package:CRONO/shared/widgets/button_widget.dart';
-import 'package:CRONO/views/initial/login/cadastroPage.dart';
+import 'package:CRONO/views/initial/login/cadastro_page.dart';
 import 'package:CRONO/views/teste/teste_porosidade_page.dart';
 import '../widgets/appbar_widget.dart';
 import '../widgets/footer_widget.dart';
@@ -69,8 +70,9 @@ class _LoginPageState extends State<LoginPage> {
         .signInWithEmailAndPassword(
             email: usuario.email, password: usuario.senha)
         .then((firebaseUser) {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => TestePorosidadePage()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => DefaultPage()));
+      //MaterialPageRoute(builder: (context) => TestePorosidadePage()));
     }).catchError((error) {
       setState(() {
         _mensagemErro =
@@ -84,8 +86,9 @@ class _LoginPageState extends State<LoginPage> {
 
     String usuarioLogado = auth.currentUser.uid;
     if (usuarioLogado != null) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => TestePorosidadePage()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => DefaultPage()));
+      //MaterialPageRoute(builder: (context) => TestePorosidadePage()));
     }
   }
 
@@ -98,6 +101,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBarWidget(),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -127,9 +131,15 @@ class _LoginPageState extends State<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Text(
+                                "E-mail: ",
+                                textAlign: TextAlign.left,
+                                style: AppTextStyles.labelBold,
+                              ),
+                              SizedBox(height: 10),
                               TextField(
                                 controller: _controllerEmail,
                                 autofocus: true,
@@ -138,12 +148,18 @@ class _LoginPageState extends State<LoginPage> {
                                 decoration: InputDecoration(
                                   contentPadding:
                                       EdgeInsets.fromLTRB(18, 8, 18, 8),
-                                  hintText: "Email",
+                                  hintText: "Digite seu e-mail",
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.zero),
                                 ),
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                "Senha: ",
+                                textAlign: TextAlign.left,
+                                style: AppTextStyles.labelBold,
                               ),
                               SizedBox(height: 10),
                               TextField(
@@ -154,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                                 decoration: InputDecoration(
                                   contentPadding:
                                       EdgeInsets.fromLTRB(18, 8, 18, 8),
-                                  hintText: "Senha",
+                                  hintText: "Digite sua senha",
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
@@ -170,7 +186,7 @@ class _LoginPageState extends State<LoginPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  ButtonWidget.blue(
+                                  ButtonWidget.green(
                                     label: "Entrar",
                                     onTap: () {
                                       _validarCampos();
@@ -179,28 +195,21 @@ class _LoginPageState extends State<LoginPage> {
                                 ],
                               ),
                               SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  GestureDetector(
-                                    child: Text(
-                                        "ou clique aqui para criar nova conta",
-                                        style: AppTextStyles.bodyLink),
-                                    onTap: () => _openCadastroPage(),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      _mensagemErro,
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 15,
-                                      ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                  ),
-                                ],
-                              )
+                              GestureDetector(
+                                child: Text(
+                                    "ou clique aqui para criar nova conta",
+                                    style: AppTextStyles.bodyLink),
+                                onTap: () => _openCadastroPage(),
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                _mensagemErro,
+                                style: TextStyle(
+                                  color: AppColors.red,
+                                  fontSize: 15,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ],
                           )
                         ],

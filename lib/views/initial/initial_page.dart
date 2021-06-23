@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:CRONO/core/core.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
-import 'package:CRONO/views/initial/login/cadastroPage.dart';
+import 'package:CRONO/views/initial/login/cadastro_page.dart';
 import 'package:CRONO/views/initial/login/login_page.dart';
 // import 'package:CRONO/views/initial/login/login_page.dart';
 import 'widgets/appbar_widget.dart';

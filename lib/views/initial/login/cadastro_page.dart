@@ -172,12 +172,13 @@ class _CadastroState extends State<Cadastro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBarWidget(),
       body: SingleChildScrollView(
         child: SafeArea(
           top: true,
           child: Container(
-            color: AppColors.white,
+            //color: AppColors.white,
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             child: Column(
               children: [
@@ -258,10 +259,10 @@ class _CadastroState extends State<Cadastro> {
                                 SizedBox(height: 10),
                                 Container(
                                   color: AppColors.white,
-                                  height: 80,
+                                  height: 150,
                                   child: CupertinoDatePicker(
                                     mode: CupertinoDatePickerMode.date,
-                                    initialDateTime: DateTime(1969, 1, 1),
+                                    initialDateTime: DateTime(2021, 1, 1),
                                     onDateTimeChanged: (DateTime newDateTime) {
                                       selectedDate = newDateTime;
                                     },
@@ -513,15 +514,13 @@ class _CadastroState extends State<Cadastro> {
                                   ],
                                 ),
                                 SizedBox(height: 20),
-                                Center(
-                                  child: Text(
-                                    _mensagemErro,
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 15,
-                                    ),
-                                    textAlign: TextAlign.left,
+                                Text(
+                                  _mensagemErro,
+                                  style: TextStyle(
+                                    color: AppColors.red,
+                                    fontSize: 15,
                                   ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ],
                               //

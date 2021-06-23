@@ -39,9 +39,39 @@ class AppTextStyles {
     fontWeight: FontWeight.normal,
   );
 
+  static final TextStyle labelHidratacao = GoogleFonts.lato(
+    color: AppColors.hidratacao,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle labelNutricao = GoogleFonts.lato(
+    color: AppColors.nutricao,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle labelReconstrucao = GoogleFonts.lato(
+    color: AppColors.reconstrucao,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
   static final TextStyle labelBold = GoogleFonts.lato(
     color: AppColors.black,
     fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle info = GoogleFonts.lato(
+    color: AppColors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+  static final TextStyle menuItemBold = GoogleFonts.lato(
+    color: AppColors.black,
+    fontSize: 16,
     fontWeight: FontWeight.w600,
   );
 
@@ -52,6 +82,13 @@ class AppTextStyles {
   );
 
   static final TextStyle bodyLink = GoogleFonts.lato(
+    color: AppColors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
+  /*
+  static final TextStyle bodyLink = GoogleFonts.lato(
     shadows: [Shadow(color: AppColors.black, offset: Offset(0, -5))],
     color: Colors.transparent,
     decoration: TextDecoration.underline,
@@ -60,6 +97,7 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.normal,
   );
+  */
 
   static final TextStyle small = GoogleFonts.lato(
     color: AppColors.lightGray,

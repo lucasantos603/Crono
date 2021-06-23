@@ -65,9 +65,10 @@ class _ProfilePageState extends State<ProfilePage> {
       child: SafeArea(
         top: true,
         child: Container(
-          //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          //padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
           child: Column(
             children: [
+              SizedBox(height: 10),
               Row(
                 children: [
                   Text(
@@ -85,85 +86,75 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Nome:",
-                              textAlign: TextAlign.left,
+                        Text.rich(
+                          TextSpan(
+                              text: "Nome: ",
                               style: AppTextStyles.labelBold,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              nome,
-                              textAlign: TextAlign.left,
-                              style: AppTextStyles.body,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Data de nascimento:",
-                              textAlign: TextAlign.left,
-                              style: AppTextStyles.labelBold,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              date == ""?"":DateFormat("dd/MM/yyyy").format(DateTime.parse(date)),
-                              textAlign: TextAlign.left,
-                              style: AppTextStyles.body,
-                            ),
-                          ],
+                              children: [
+                                TextSpan(
+                                  text: nome,
+                                  style: AppTextStyles.info,
+                                ),
+                              ]),
+                          textAlign: TextAlign.left,
                         ),
                         SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Text(
-                              "Estado:",
-                              textAlign: TextAlign.left,
+                        Text.rich(
+                          TextSpan(
+                              text: "Data de nascimento: ",
                               style: AppTextStyles.labelBold,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              uf,
-                              textAlign: TextAlign.left,
-                              style: AppTextStyles.body,
-                            ),
-                          ],
+                              children: [
+                                TextSpan(
+                                  text: date == ""
+                                      ? ""
+                                      : DateFormat("dd/MM/yyyy")
+                                          .format(DateTime.parse(date)),
+                                  style: AppTextStyles.info,
+                                ),
+                              ]),
+                          textAlign: TextAlign.left,
                         ),
                         SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Text(
-                              "Tipo de cabelo:",
-                              textAlign: TextAlign.left,
+                        Text.rich(
+                          TextSpan(
+                              text: "Estado: ",
                               style: AppTextStyles.labelBold,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              tipodecabelo,
-                              textAlign: TextAlign.left,
-                              style: AppTextStyles.body,
-                            ),
-                          ],
+                              children: [
+                                TextSpan(
+                                  text: uf,
+                                  style: AppTextStyles.info,
+                                ),
+                              ]),
+                          textAlign: TextAlign.left,
                         ),
                         SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Text(
-                              "Resultado do último teste de porosidade:",
-                              textAlign: TextAlign.left,
+                        Text.rich(
+                          TextSpan(
+                              text: "Tipo de cabelo: ",
                               style: AppTextStyles.labelBold,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              teste,
-                              textAlign: TextAlign.left,
-                              style: AppTextStyles.body,
-                            ),
-                          ],
+                              children: [
+                                TextSpan(
+                                  text: tipodecabelo,
+                                  style: AppTextStyles.info,
+                                ),
+                              ]),
+                          textAlign: TextAlign.left,
                         ),
                         SizedBox(height: 10),
+                        Text.rich(
+                          TextSpan(
+                              text:
+                                  "Resultado do último\nteste de porosidade: ",
+                              style: AppTextStyles.labelBold,
+                              children: [
+                                TextSpan(
+                                  text: teste,
+                                  style: AppTextStyles.info,
+                                ),
+                              ]),
+                          textAlign: TextAlign.left,
+                        ),
+
                         //Text("Nome :${nome}"),
                         //Text("Data de nascimento :${date}"),
                         //Text("Estado :${uf}"),
