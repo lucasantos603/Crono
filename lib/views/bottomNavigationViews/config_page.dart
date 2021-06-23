@@ -24,6 +24,8 @@ class _ConfigPageState extends State<ConfigPage> {
   TextEditingController _controllerCabelo = TextEditingController();
   TextEditingController _controllerData = TextEditingController();
   TextEditingController _controllerUf = TextEditingController();
+  //TextEditingController _controllerSenhaAtual = TextEditingController();
+  //TextEditingController _controllerSenhaNova = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   void initState() {
@@ -53,6 +55,7 @@ class _ConfigPageState extends State<ConfigPage> {
         _controllerUf.text = snapshot['uf'].toString();
         _radioDozeMeses = snapshot['tratamentodozemeses'] == true ? 1 : 0;
         _email = snapshot['email'].toString();
+        //_controllerSenhaAtual = snapshot['senha'].toString();
         ultimoResultado = snapshot['teste'].toString();
       });
     }
@@ -64,11 +67,20 @@ class _ConfigPageState extends State<ConfigPage> {
     //  }
   }
 
-  void _deletarDados() {
+  void _deletarDados() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore db = FirebaseFirestore.instance;
 
     db.collection("usuarios").doc(auth.currentUser.uid).delete();
+
+    try {
+      await FirebaseAuth.instance.currentUser.delete();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        print(
+            'The user must reauthenticate before this operation can be executed.');
+      }
+    }
 
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
@@ -87,6 +99,7 @@ class _ConfigPageState extends State<ConfigPage> {
       "date": "${_controllerData.text}",
       "uf": "${_controllerUf.text}",
       "email": "${_email}",
+      //"senha": "${_controllerSenhaNova.text}",
       "teste": "${ultimoResultado}"
     });
     Navigator.pop(context);
@@ -95,6 +108,7 @@ class _ConfigPageState extends State<ConfigPage> {
   String ultimoResultado;
   int _radioDozeMeses;
   String _email;
+  //String _senha;
 
   @override
   Widget build(BuildContext context) {
@@ -177,6 +191,7 @@ class _ConfigPageState extends State<ConfigPage> {
                                               },
                                             ),
                                             SizedBox(height: 15),
+                                            /*
                                             Text(
                                               "Data de Nascimento:",
                                               textAlign: TextAlign.left,
@@ -207,7 +222,7 @@ class _ConfigPageState extends State<ConfigPage> {
                                                 }
                                               },
                                             ),
-                                            SizedBox(height: 15),
+                                            SizedBox(height: 15),*/
                                             Text(
                                               "Estado:",
                                               textAlign: TextAlign.left,
@@ -316,6 +331,131 @@ class _ConfigPageState extends State<ConfigPage> {
                                             Center(
                                               child: ButtonWidget.green(
                                                   label: "Enviar",
+                                                  onTap: () async {
+                                                    if (_formKey.currentState
+                                                        .validate()) {
+                                                      _editarDados();
+                                                    }
+                                                  }),
+                                            ),
+                                            /*RaisedButton(
+                                              color: Colors.blue,
+                                              textColor: Colors.white,
+                                              child: Text(
+                                                'Entrar',
+                                                style: TextStyle(fontSize: 15),
+                                              ),
+                                              onPressed: () async {
+                                                if (_formKey.currentState
+                                                    .validate()) {
+                                                  _editarDados();
+                                                }
+                                              },
+                                            ),*/
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  })));
+                        },
+                      ),
+                      SizedBox(height: 15),
+                      InkWell(
+                        child: Text(
+                          "• Alterar senha",
+                          style: AppTextStyles.menuItemBold,
+                          textAlign: TextAlign.start,
+                        ),
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(content:
+                                      StatefulBuilder(builder:
+                                          (BuildContext context,
+                                              StateSetter setState) {
+                                    return SingleChildScrollView(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15, vertical: 15),
+                                      child: Form(
+                                        key: _formKey,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children: <Widget>[
+                                            Text(
+                                              "Senha atual:",
+                                              textAlign: TextAlign.left,
+                                              style: AppTextStyles.labelBold,
+                                            ),
+                                            SizedBox(height: 10),
+                                            TextFormField(
+                                              autofocus: true,
+                                              keyboardType: TextInputType.text,
+                                              style: TextStyle(fontSize: 15),
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.fromLTRB(
+                                                        18, 8, 18, 8),
+                                                hintText:
+                                                    "Digite sua senha atual",
+                                                filled: true,
+                                                fillColor: AppColors.white,
+                                                border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.zero),
+                                              ),
+                                              //controller: _controllerSenhaAtual,
+                                              // ignore: missing_return
+                                              /*validator: (value) {
+                                                if (value.isEmpty || value != senha) {
+                                                  return "A senha não corresponde à atual";
+                                                }
+                                              },*/
+                                            ),
+                                            SizedBox(height: 15),
+                                            Text(
+                                              "Nova senha:",
+                                              textAlign: TextAlign.left,
+                                              style: AppTextStyles.labelBold,
+                                            ),
+                                            SizedBox(height: 10),
+                                            TextFormField(
+                                              autofocus: true,
+                                              keyboardType: TextInputType.text,
+                                              style: TextStyle(fontSize: 15),
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.fromLTRB(
+                                                        18, 8, 18, 8),
+                                                hintText:
+                                                    "Digite uma nova senha",
+                                                filled: true,
+                                                fillColor: AppColors.white,
+                                                border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.zero),
+                                              ),
+                                              //controller: _controllerData,
+                                              // ignore: missing_return
+                                              //validator: (value) {
+                                              //  if (value.isEmpty) {
+                                              //    return "Informe um valor válido";
+                                              //  }
+                                              //},
+                                            ),
+                                            SizedBox(height: 10),
+                                            Text(
+                                              "Escolha uma senha com no mínimo 6 caracteres",
+                                              textAlign: TextAlign.left,
+                                              style: AppTextStyles.small,
+                                            ),
+                                            SizedBox(height: 20),
+                                            // ignore: deprecated_member_use
+                                            Center(
+                                              child: ButtonWidget.green(
+                                                  label: "Alterar",
                                                   onTap: () async {
                                                     if (_formKey.currentState
                                                         .validate()) {

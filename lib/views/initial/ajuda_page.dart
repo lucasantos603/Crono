@@ -52,6 +52,197 @@ class _AjudaPageState extends State<AjudaPage> {
                           SizedBox(height: 15),
                           Image.asset(AppImages.tiposdecabelo),
                           SizedBox(height: 45),
+                          Text("• Como posso refazer o teste de porosidade?",
+                              style: AppTextStyles.labelBold,
+                              textAlign: TextAlign.left),
+                          SizedBox(height: 10),
+                          Text(
+                              "O teste de porosidade gera um cronograma de quatro semanas, logo o ideal é refazê-lo a cada final de cronograma ou quando sentir necessidade.\n\nPara acessar o teste, vá para a página de Configurações e clique em Refazer teste de porosidade.",
+                              style: AppTextStyles.body,
+                              textAlign: TextAlign.justify),
+                          SizedBox(height: 45),
+                          Text("• Como saber quais etapas devo fazer?",
+                              style: AppTextStyles.labelBold,
+                              textAlign: TextAlign.left),
+                          SizedBox(height: 10),
+                          Text(
+                              "Após completar o teste de porosidade, você encontrará um gráfico que sinaliza as etapas que devem ser cumpridas no cronograma por 4 semanas. Esse mesmo gráfico também está disponível na página inicial do app, assim você poderá conferir sempre que desejar.",
+                              style: AppTextStyles.body,
+                              textAlign: TextAlign.justify),
+                          SizedBox(height: 15),
+                          Center(
+                            child: Image.asset(
+                              'assets/images/ajuda-comousar-1.png',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                              "Seguindo o exemplo, para seguir este cronograma você deve:",
+                              style: AppTextStyles.body,
+                              textAlign: TextAlign.justify),
+                          SizedBox(height: 15),
+                          Text.rich(
+                            TextSpan(
+                                text: "Na primeira semana: ",
+                                style: AppTextStyles.menuItemBold,
+                                children: [
+                                  TextSpan(
+                                    text: "começar fazendo um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "hidratação",
+                                    style: AppTextStyles.labelHidratacao,
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ", em seguida fazer um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "nutrição",
+                                    style: AppTextStyles.labelNutricao,
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        " e completar a semana fazendo um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "hidratação",
+                                    style: AppTextStyles.labelHidratacao,
+                                  ),
+                                  TextSpan(
+                                    text: ".",
+                                    style: AppTextStyles.info,
+                                  ),
+                                ]),
+                            textAlign: TextAlign.justify,
+                          ),
+                          SizedBox(height: 15),
+                          Text.rich(
+                            TextSpan(
+                                text: "Na segunda semana: ",
+                                style: AppTextStyles.menuItemBold,
+                                children: [
+                                  TextSpan(
+                                    text: "começar fazendo um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "hidratação",
+                                    style: AppTextStyles.labelHidratacao,
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ", em seguida fazer um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "hidratação",
+                                    style: AppTextStyles.labelHidratacao,
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        " e completar a semana fazendo um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "nutrição",
+                                    style: AppTextStyles.labelNutricao,
+                                  ),
+                                  TextSpan(
+                                    text: ".",
+                                    style: AppTextStyles.info,
+                                  ),
+                                ]),
+                            textAlign: TextAlign.justify,
+                          ),
+                          SizedBox(height: 15),
+                          Text.rich(
+                            TextSpan(
+                                text: "Na terceira semana: ",
+                                style: AppTextStyles.menuItemBold,
+                                children: [
+                                  TextSpan(
+                                    text: "começar fazendo um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "hidratação",
+                                    style: AppTextStyles.labelHidratacao,
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ", em seguida fazer um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "nutrição",
+                                    style: AppTextStyles.labelNutricao,
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        " e completar a semana fazendo um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "hidratação",
+                                    style: AppTextStyles.labelHidratacao,
+                                  ),
+                                  TextSpan(
+                                    text: ".",
+                                    style: AppTextStyles.info,
+                                  ),
+                                ]),
+                            textAlign: TextAlign.justify,
+                          ),
+                          SizedBox(height: 15),
+                          Text.rich(
+                            TextSpan(
+                                text: "Na quarta semana: ",
+                                style: AppTextStyles.menuItemBold,
+                                children: [
+                                  TextSpan(
+                                    text: "começar fazendo um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "hidratação",
+                                    style: AppTextStyles.labelHidratacao,
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ", em seguida fazer um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "nutrição",
+                                    style: AppTextStyles.labelNutricao,
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        " e completar a semana fazendo um tratamento de ",
+                                    style: AppTextStyles.info,
+                                  ),
+                                  TextSpan(
+                                    text: "reconstrução",
+                                    style: AppTextStyles.labelReconstrucao,
+                                  ),
+                                  TextSpan(
+                                    text: ".",
+                                    style: AppTextStyles.info,
+                                  ),
+                                ]),
+                            textAlign: TextAlign.justify,
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                              "Viu como é fácil? Agora é só marcar seus tratamentos no calendário e mantê-lo atualizado!",
+                              style: AppTextStyles.body,
+                              textAlign: TextAlign.justify),
+                          SizedBox(height: 45),
                           Text("• Como adicionar marcações no calendário?",
                               style: AppTextStyles.labelBold,
                               textAlign: TextAlign.left),
@@ -111,6 +302,11 @@ class _AjudaPageState extends State<AjudaPage> {
                                 'assets/images/ajuda-comousar-5.png',
                                 fit: BoxFit.fill),
                           ),
+                          SizedBox(height: 20),
+                          Text(
+                              "O CRONO permite fazer quantas marcações quiser em uma semana, mas aconselhamos fazer um tratamento de cada etapa, com intervalo de 2 dias, no mínimo.",
+                              style: AppTextStyles.body,
+                              textAlign: TextAlign.justify),
                         ],
                       ),
                     ),

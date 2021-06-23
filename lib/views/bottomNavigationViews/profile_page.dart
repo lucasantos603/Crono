@@ -23,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String nome = "";
   String uf = "";
   String teste = "";
+  String email = "";
 
   void initState() {
     super.initState();
@@ -49,6 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
         date = snapshot['date'].toString();
         uf = snapshot['uf'].toString();
         teste = snapshot['teste'].toString();
+        email = snapshot['email'].toString();
       });
     }
     // else{
@@ -93,6 +95,19 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: [
                                 TextSpan(
                                   text: nome,
+                                  style: AppTextStyles.info,
+                                ),
+                              ]),
+                          textAlign: TextAlign.left,
+                        ),
+                        SizedBox(height: 10),
+                        Text.rich(
+                          TextSpan(
+                              text: "E-mail: ",
+                              style: AppTextStyles.labelBold,
+                              children: [
+                                TextSpan(
+                                  text: email,
                                   style: AppTextStyles.info,
                                 ),
                               ]),
@@ -148,7 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               style: AppTextStyles.labelBold,
                               children: [
                                 TextSpan(
-                                  text: teste,
+                                  text: teste.toLowerCase(),
                                   style: AppTextStyles.info,
                                 ),
                               ]),

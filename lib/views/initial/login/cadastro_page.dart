@@ -14,6 +14,7 @@ import 'package:CRONO/views/initial/privacidade_page.dart';
 import 'package:CRONO/views/initial/widgets/appbar_widget.dart';
 import 'package:CRONO/views/initial/widgets/footer_widget.dart';
 import 'package:CRONO/views/teste/teste_porosidade_page.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key key, this.title}) : super(key: key);
@@ -33,6 +34,64 @@ class Cadastro extends StatefulWidget {
 }
 
 class _CadastroState extends State<Cadastro> {
+  static const List<String> _shortWeekdays = <String>[
+    'S',
+    'T',
+    'Q',
+    'Q',
+    'S',
+    'S',
+    'D',
+  ];
+
+  static const List<String> _shortMonths = <String>[
+    'Jan',
+    'Fev',
+    'Mar',
+    'Abr',
+    'Mai',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Set',
+    'Out',
+    'Nov',
+    'Dez',
+  ];
+
+  static const List<String> _months = <String>[
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ];
+
+  @override
+  String datePickerYear(int yearIndex) => yearIndex.toString();
+
+  @override
+  String datePickerMonth(int monthIndex) => _months[monthIndex - 1];
+
+  @override
+  String datePickerDayOfMonth(int dayIndex) => dayIndex.toString();
+
+  @override
+  String datePickerHour(int hour) => hour.toString();
+
+  @override
+  String datePickerHourSemanticsLabel(int hour) => hour.toString() + " Uhr";
+
+  @override
+  String datePickerMinute(int minute) => minute.toString().padLeft(2, '0');
+
   //Variaveis
   DateTime selectedDate = DateTime.now();
   String tipodecabelo = "Selecione";
@@ -171,6 +230,7 @@ class _CadastroState extends State<Cadastro> {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('pt_BR', null);
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBarWidget(),
@@ -263,10 +323,18 @@ class _CadastroState extends State<Cadastro> {
                                   child: CupertinoDatePicker(
                                     mode: CupertinoDatePickerMode.date,
                                     initialDateTime: DateTime(2021, 1, 1),
+                                    minimumYear: 1900,
+                                    maximumYear: 2021,
                                     onDateTimeChanged: (DateTime newDateTime) {
                                       selectedDate = newDateTime;
                                     },
                                   ),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  "Preencha com atenção, não é possível alterar posteriormente",
+                                  textAlign: TextAlign.left,
+                                  style: AppTextStyles.small,
                                 ),
                                 SizedBox(height: 20),
                                 Text(
@@ -413,6 +481,12 @@ class _CadastroState extends State<Cadastro> {
                                       fillColor: Colors.white,
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.zero)),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  "Escolha uma senha com no mínimo 6 caracteres",
+                                  textAlign: TextAlign.left,
+                                  style: AppTextStyles.small,
                                 ),
                                 SizedBox(height: 20),
                                 Text(

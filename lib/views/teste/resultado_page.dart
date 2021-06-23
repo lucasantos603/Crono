@@ -39,7 +39,7 @@ class _CalendarPageState extends State<CalendarPage> {
                       child: Column(
                         children: [
                           Text(
-                            "Como seu cabelo ${widget.valor}, criamos este cronograma para você",
+                            "Como seu cabelo ${widget.valor.toLowerCase()}, criamos este cronograma para você",
                             style: AppTextStyles.heading20,
                             textAlign: TextAlign.center,
                           ),
@@ -55,36 +55,6 @@ class _CalendarPageState extends State<CalendarPage> {
                           widget.valor == 'Boiou'
                               ? Image.asset(AppImages.cronogramaboiou)
                               : Text(""),
-
-                          SizedBox(height: 40),
-                          // Text(
-                          //   "Legenda: ",
-                          //   style: AppTextStyles.body,
-                          // ),
-                          // ActionChip(
-                          //   label: Text(
-                          //     'Tratamento de Hidratação',
-                          //     style: AppTextStyles.labelBold,
-                          //   ),
-                          //   backgroundColor: AppColors.hidratacao,
-                          //   onPressed: () {},
-                          // ),
-                          // ActionChip(
-                          //   label: Text(
-                          //     'Tratamento de Nutrição',
-                          //     style: AppTextStyles.labelBold,
-                          //   ),
-                          //   backgroundColor: AppColors.nutricao,
-                          //   onPressed: () {},
-                          // ),
-                          // ActionChip(
-                          //   label: Text(
-                          //     'Tratamento de Reconstrução',
-                          //     style: AppTextStyles.labelBold,
-                          //   ),
-                          //   backgroundColor: AppColors.reconstrucao,
-                          //   onPressed: () {},
-                          // ),
                           SizedBox(height: 40),
                           ButtonWidget.blue(
                             label: "Ir para página inicial",

@@ -1,16 +1,13 @@
-// import 'dart:html';
-
 import 'dart:convert';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
-// import 'package:tcc_crono/calendar/add_event_calendar.dart';
 import 'package:CRONO/calendar/event.dart';
 import 'package:CRONO/core/app_text_styles.dart';
 import 'package:CRONO/core/core.dart';
@@ -52,11 +49,6 @@ class _HomePageState extends State<HomePage> {
     if (auth.currentUser != null) {
       DocumentSnapshot snapshot =
           await db.collection("usuarios").doc(auth.currentUser.uid).get();
-
-      // print ("Teste");
-      // var dadosJson = json.decode(snapshot.metadata["nome"];
-      //     print ("Teste2");
-      // print (dadosJson["nome"].toString());
 
       setState(() {
         nome = snapshot['nome'].toString();
@@ -147,10 +139,70 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+/*
+  static const List<String> _shortWeekdays = <String>[
+    'S',
+    'T',
+    'Q',
+    'Q',
+    'S',
+    'S',
+    'D',
+  ];
+
+  static const List<String> _shortMonths = <String>[
+    'Jan',
+    'Fev',
+    'Mar',
+    'Abr',
+    'Mai',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Set',
+    'Out',
+    'Nov',
+    'Dez',
+  ];
+
+  static const List<String> _months = <String>[
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ];
+
+  @override
+  String datePickerYear(int yearIndex) => yearIndex.toString();
+
+  @override
+  String datePickerMonth(int monthIndex) => _months[monthIndex - 1];
+
+  @override
+  String datePickerDayOfMonth(int dayIndex) => dayIndex.toString();
+
+  @override
+  String datePickerHour(int hour) => hour.toString();
+
+  @override
+  String datePickerHourSemanticsLabel(int hour) => hour.toString() + " Uhr";
+
+  @override
+  String datePickerMinute(int minute) => minute.toString().padLeft(2, '0');*/
 
   int _estagio;
+
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('pt_BR', null);
     // _retornarEventos();
     return SingleChildScrollView(
       child: Container(
@@ -166,9 +218,6 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 15),
             Text(
                 "No seu último resultado do teste de porosidade o seu fio ${ultimoResultado}, siga a ordem de tratamento abaixo:"),
-            //Padding(
-            //padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-            //child: Column(
             ultimoResultado == 'Afundou Imediatamente'
                 ? Image.asset(AppImages.cronogramaafundouimediamente,
                     fit: BoxFit.contain)
@@ -180,17 +229,15 @@ class _HomePageState extends State<HomePage> {
             ultimoResultado == 'Boiou'
                 ? Image.asset(AppImages.cronogramaboiou, fit: BoxFit.contain)
                 : Text(""),
-            //),
             SizedBox(height: 15),
             Text(
               "Cronograma atual:",
               style: AppTextStyles.body,
               textAlign: TextAlign.left,
             ),
-
             SizedBox(
               child: TableCalendar(
-                //locale: 'pt-BR',
+                locale: 'pt-BR',
                 focusedDay: focusedDay,
                 firstDay: DateTime(2000),
                 lastDay: DateTime(2050),
@@ -202,7 +249,6 @@ class _HomePageState extends State<HomePage> {
                 },
                 startingDayOfWeek: StartingDayOfWeek.sunday,
                 daysOfWeekVisible: true,
-
                 //Day Changed
                 onDaySelected: (DateTime selectDay, DateTime focusDay) {
                   setState(() {
@@ -213,12 +259,7 @@ class _HomePageState extends State<HomePage> {
                 selectedDayPredicate: (DateTime date) {
                   return isSameDay(selectedDay, date);
                 },
-
                 eventLoader: _getEventfromDay,
-
-                //16:32 primeiro video
-                //To Style the Calendar
-
                 calendarStyle: CalendarStyle(
                   isTodayHighlighted: true,
                   selectedDecoration: BoxDecoration(
@@ -255,7 +296,6 @@ class _HomePageState extends State<HomePage> {
                     )),
               ),
             ),
-
             ..._getEventfromDay(selectedDay).map(
               (Event event) => ListTile(
                 title: Text(
@@ -264,54 +304,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 subtitle:
                     Text(event.tratamento, style: AppTextStyles.labelBold),
-                /*
-                  Row(
-                    children: [
-                      event.tratamento == 'Hidratação'
-                          ? Text(event.tratamento,
-                              style: AppTextStyles.labelHidratacao)
-                          : "",
-                      event.tratamento == 'Nutrição'
-                          ? Text(event.tratamento,
-                              style: AppTextStyles.labelNutricao)
-                          : "",
-                      event.tratamento == 'Reconstrução'
-                          ? Text(event.tratamento,
-                              style: AppTextStyles.labelReconstrucao)
-                          : ""
-                    ],
-                  )*/
-
-                /*
-                 Text(event.tratamento,
-                    style: AppTextStyles.labelHidratacao
-                    //event.tratamento == 'Hidratação' ? AppTextStyles.labelHidratacao : AppTextStyles.body,
-                    //event.tratamento == 'Nutrição' ? AppTextStyles.labelNutricao : AppTextStyles.body,
-                    //event.tratamento == 'Reconstrução' ? AppTextStyles.labelReconstrucao : AppTextStyles.body,
-                    ),
-*/
-                //subtitle: Text(event.marca + " - " + event.tratamento),
               ),
             ),
-            // SizedBox(height: 20),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   children: [
-            //     ActionChip(
-            //       avatar: Icon(
-            //         CupertinoIcons.backward_fill,
-            //         size: 20,
-            //       ),
-            //       label: Text(
-            //         'Deslize para ver meses anteriores',
-            //         style: AppTextStyles.labelBold,
-            //       ),
-            //       backgroundColor: AppColors.white,
-            //       onPressed: () {},
-            //     )
-            //   ],
-            // ),
             FloatingActionButton.extended(
               label: Text("Adicionar marcação"),
               onPressed: () => showDialog(
@@ -344,7 +338,6 @@ class _HomePageState extends State<HomePage> {
                                       decoration: InputDecoration(
                                         contentPadding:
                                             EdgeInsets.fromLTRB(18, 8, 18, 8),
-                                        //labelText: '​E-mail',
                                         hintText: "Nome do produto utilizado",
                                         filled: true,
                                         fillColor: AppColors.white,
@@ -373,7 +366,6 @@ class _HomePageState extends State<HomePage> {
                                       decoration: InputDecoration(
                                         contentPadding:
                                             EdgeInsets.fromLTRB(18, 8, 18, 8),
-                                        //labelText: '​E-mail',
                                         hintText: "Marca do produto utilizado",
                                         filled: true,
                                         fillColor: AppColors.white,
@@ -455,8 +447,13 @@ class _HomePageState extends State<HomePage> {
                                             )
                                           ],
                                         ),
+                                        SizedBox(height: 10),
+                                        Text(
+                                          "Preencha com atenção, não é possível alterar ou excluir a marcação posteriormente",
+                                          textAlign: TextAlign.left,
+                                          style: AppTextStyles.small,
+                                        ),
                                         SizedBox(height: 30),
-                                        // ignore: deprecated_member_use
                                         ButtonWidget.green(
                                           label: "Adicionar",
                                           onTap: () {
@@ -490,62 +487,19 @@ class _HomePageState extends State<HomePage> {
                                               }
                                             }
                                             // Navigator.pop(context);
-                                            _eventController.clear();
-                                            _marcaController.clear();
-                                            // _tratamentoController.clear();
-                                            setState(() {});
 
-                                            Navigator.pop(context);
+                                            setState(() async {
+                                              await Future.value({});
+                                              _eventController.clear();
+                                              _marcaController.clear();
+                                              _tratamentoController.clear();
+                                              Navigator.pop(context);
+                                            });
+                                            //setState(() {});
 
                                             return;
                                           },
                                         ),
-
-                                        /*
-                                        RaisedButton(
-                                          onPressed: () {
-                                            _adicionarEvento();
-                                            if (_eventController.text.isEmpty) {
-                                            } else {
-                                              if (selectedEvents[selectedDay] !=
-                                                  null) {
-                                                selectedEvents[selectedDay].add(
-                                                  Event(
-                                                    title:
-                                                        _eventController.text,
-                                                    marca:
-                                                        _marcaController.text,
-                                                    tratamento:
-                                                        _tratamentoController
-                                                            .text,
-                                                  ),
-                                                );
-                                              } else {
-                                                selectedEvents[selectedDay] = [
-                                                  Event(
-                                                      title:
-                                                          _eventController.text,
-                                                      marca:
-                                                          _marcaController.text,
-                                                      tratamento:
-                                                          _tratamentoController
-                                                              .text)
-                                                ];
-                                              }
-                                            }
-                                            // Navigator.pop(context);
-                                            _eventController.clear();
-                                            _marcaController.clear();
-                                            // _tratamentoController.clear();
-                                            setState(() {});
-
-                                            Navigator.pop(context);
-
-                                            return;
-                                          },
-                                          child: Text("Adicionar"),
-                                        )
-                                        */
                                       ],
                                     ),
                                   ],
@@ -564,117 +518,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-//
-// () => showDialog(
-// context: context,
-// builder: (context) => AlertDialog(
-// title: Text("Add Event"),
-// content: Container(
-// child: Column(
-// children: [
-// TextField(
-// decoration: InputDecoration(
-// hintText: "Nome do Produto"),
-// controller: _nomeProdutoController,
-// ),
-// TextField(
-// decoration: InputDecoration(
-// hintText: "Marca do Produto"),
-// controller: _marcaController,
-// ),
-// Column(
-// children: <Widget>[
-// Row(
-// children: <Widget>[
-// Expanded(
-// flex: 1,
-// child: RadioListTile(
-// title: Text("Hidratação"),
-// value: 0,
-// groupValue:
-// _estagio,
-// onChanged: (int escolha) {
-// setState(() {
-// _estagio =
-// escolha;
-// });
-// }),
-// )
-// ],
-// ),
-// Row(
-// children: <Widget>[
-// Expanded(
-// flex: 1,
-// child: RadioListTile(
-// title: Text("Nutrição"),
-// value: 1,
-// groupValue:
-// _estagio,
-// onChanged: (int escolha) {
-// setState(() {
-// _estagio =
-// escolha;
-// });
-// }),
-// )
-// ],
-// ),
-// Row(
-// children: <Widget>[
-// Expanded(
-// flex: 1,
-// child: RadioListTile(
-// title: Text("Reconstrução"),
-// value: 2,
-// groupValue:
-// _estagio,
-// onChanged: (int escolha) {
-// setState(() {
-// _estagio =
-// escolha;
-// });
-// }),
-// )
-// ],
-// )
-// ],
-// ),
-// ],
-// ),
-// ),
-// actions: [
-// TextButton(
-// child: Text("Ok"),
-// onPressed: () {
-// print(_marcaController.text);
-// if (_eventController.text.isEmpty) {
-// } else {
-// if (selectedEvents[selectedDay] != null) {
-// selectedEvents[selectedDay].add(
-// Event(
-// title: _eventController.text,
-// marca: _marcaController.text),
-// );
-// } else {
-// selectedEvents[selectedDay] = [
-// Event(
-// title: _eventController.text,
-// marca: _marcaController.text)
-// ];
-// }
-// }
-// Navigator.pop(context);
-// _eventController.clear();
-// _marcaController.clear();
-// setState(() {});
-// return;
-// },
-// ),
-// TextButton(
-// child: Text("Cancelar"),
-// onPressed: () => Navigator.pop(context),
-// ),
-// ],
-// )),
