@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:CRONO/core/app_text_styles.dart';
-import 'package:CRONO/shared/widgets/button_widget.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({Key key}) : super(key: key);
@@ -18,7 +16,6 @@ class _ContentPageState extends State<ContentPage> {
       child: SafeArea(
         top: true,
         child: Container(
-          //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Column(
             children: [
               SizedBox(height: 10),

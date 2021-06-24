@@ -87,18 +87,6 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
 
-  /*
-  static final TextStyle bodyLink = GoogleFonts.lato(
-    shadows: [Shadow(color: AppColors.black, offset: Offset(0, -5))],
-    color: Colors.transparent,
-    decoration: TextDecoration.underline,
-    decorationColor: AppColors.black,
-    decorationThickness: 1,
-    fontSize: 14,
-    fontWeight: FontWeight.normal,
-  );
-  */
-
   static final TextStyle small = GoogleFonts.lato(
     color: AppColors.lightGray,
     fontSize: 10,

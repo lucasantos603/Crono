@@ -9,7 +9,6 @@ import 'package:CRONO/views/initial/ajuda_page.dart';
 import 'package:CRONO/views/initial/initial_page.dart';
 import 'package:CRONO/views/initial/login/login_page.dart';
 import 'package:CRONO/views/initial/privacidade_page.dart';
-// import 'package:CRONO/views/teste/teste_porosidade_page.dart';
 
 class ConfigPage extends StatefulWidget {
   const ConfigPage({Key key}) : super(key: key);
@@ -24,8 +23,6 @@ class _ConfigPageState extends State<ConfigPage> {
   TextEditingController _controllerCabelo = TextEditingController();
   TextEditingController _controllerData = TextEditingController();
   TextEditingController _controllerUf = TextEditingController();
-  //TextEditingController _controllerSenhaAtual = TextEditingController();
-  //TextEditingController _controllerSenhaNova = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   void initState() {
@@ -44,10 +41,6 @@ class _ConfigPageState extends State<ConfigPage> {
       DocumentSnapshot snapshot =
           await db.collection("usuarios").doc(auth.currentUser.uid).get();
 
-      // print ("Teste");
-      // var dadosJson = json.decode(snapshot.metadata["nome"];
-      //     print ("Teste2");
-      // print (dadosJson["nome"].toString());
       setState(() {
         _controllerNome.text = snapshot['nome'].toString();
         _controllerCabelo.text = snapshot['tipodecabelo'].toString();
@@ -55,16 +48,9 @@ class _ConfigPageState extends State<ConfigPage> {
         _controllerUf.text = snapshot['uf'].toString();
         _radioDozeMeses = snapshot['tratamentodozemeses'] == true ? 1 : 0;
         _email = snapshot['email'].toString();
-        //_controllerSenhaAtual = snapshot['senha'].toString();
         ultimoResultado = snapshot['teste'].toString();
       });
     }
-    // else{
-    //
-    // Navigator.pushReplacement(context,
-    //       MaterialPageRoute(builder: (context) => login_page()));
-    //
-    //  }
   }
 
   void _deletarDados() async {
@@ -81,21 +67,6 @@ class _ConfigPageState extends State<ConfigPage> {
             'The user must reauthenticate before this operation can be executed.');
       }
     }
-
-    /*void _deletarDados() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    FirebaseFirestore db = FirebaseFirestore.instance;
-
-    db.collection("usuarios").doc(auth.currentUser.uid).delete();
-
-    try {
-      await FirebaseAuth.instance.currentUser.delete();
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'requires-recent-login') {
-        print(
-            'The user must reauthenticate before this operation can be executed.');
-      }
-    }*/
 
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
@@ -114,7 +85,6 @@ class _ConfigPageState extends State<ConfigPage> {
       "date": "${_controllerData.text}",
       "uf": "${_controllerUf.text}",
       "email": "${_email}",
-      //"senha": "${_controllerSenhaNova.text}",
       "teste": "${ultimoResultado}"
     });
     Navigator.pop(context);
@@ -123,7 +93,6 @@ class _ConfigPageState extends State<ConfigPage> {
   String ultimoResultado;
   int _radioDozeMeses;
   String _email;
-  //String _senha;
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +100,6 @@ class _ConfigPageState extends State<ConfigPage> {
       child: SafeArea(
         top: true,
         child: Container(
-          //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Column(
             children: [
               SizedBox(height: 10),
@@ -153,7 +121,7 @@ class _ConfigPageState extends State<ConfigPage> {
                     children: [
                       InkWell(
                         child: Text(
-                          "• Editar Perfil",
+                          "• Editar perfil",
                           style: AppTextStyles.menuItemBold,
                           textAlign: TextAlign.start,
                         ),
@@ -206,38 +174,6 @@ class _ConfigPageState extends State<ConfigPage> {
                                               },
                                             ),
                                             SizedBox(height: 15),
-                                            /*
-                                            Text(
-                                              "Data de Nascimento:",
-                                              textAlign: TextAlign.left,
-                                              style: AppTextStyles.labelBold,
-                                            ),
-                                            SizedBox(height: 10),
-                                            TextFormField(
-                                              autofocus: true,
-                                              keyboardType: TextInputType.text,
-                                              style: TextStyle(fontSize: 15),
-                                              decoration: InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.fromLTRB(
-                                                        18, 8, 18, 8),
-                                                //labelText: '​E-mail',
-                                                hintText: "Data de Nascimento",
-                                                filled: true,
-                                                fillColor: AppColors.white,
-                                                border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.zero),
-                                              ),
-                                              controller: _controllerData,
-                                              // ignore: missing_return
-                                              validator: (value) {
-                                                if (value.isEmpty) {
-                                                  return "Informe um valor válido";
-                                                }
-                                              },
-                                            ),
-                                            SizedBox(height: 15),*/
                                             Text(
                                               "Estado:",
                                               textAlign: TextAlign.left,
@@ -353,20 +289,6 @@ class _ConfigPageState extends State<ConfigPage> {
                                                     }
                                                   }),
                                             ),
-                                            /*RaisedButton(
-                                              color: Colors.blue,
-                                              textColor: Colors.white,
-                                              child: Text(
-                                                'Entrar',
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              onPressed: () async {
-                                                if (_formKey.currentState
-                                                    .validate()) {
-                                                  _editarDados();
-                                                }
-                                              },
-                                            ),*/
                                           ],
                                         ),
                                       ),
@@ -374,132 +296,6 @@ class _ConfigPageState extends State<ConfigPage> {
                                   })));
                         },
                       ),
-                      /*
-                      SizedBox(height: 15),
-                      InkWell(
-                        child: Text(
-                          "• Alterar senha",
-                          style: AppTextStyles.menuItemBold,
-                          textAlign: TextAlign.start,
-                        ),
-                        onTap: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(content:
-                                      StatefulBuilder(builder:
-                                          (BuildContext context,
-                                              StateSetter setState) {
-                                    return SingleChildScrollView(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 15),
-                                      child: Form(
-                                        key: _formKey,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: <Widget>[
-                                            Text(
-                                              "Senha atual:",
-                                              textAlign: TextAlign.left,
-                                              style: AppTextStyles.labelBold,
-                                            ),
-                                            SizedBox(height: 10),
-                                            TextFormField(
-                                              autofocus: true,
-                                              keyboardType: TextInputType.text,
-                                              style: TextStyle(fontSize: 15),
-                                              decoration: InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.fromLTRB(
-                                                        18, 8, 18, 8),
-                                                hintText:
-                                                    "Digite sua senha atual",
-                                                filled: true,
-                                                fillColor: AppColors.white,
-                                                border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.zero),
-                                              ),
-                                              //controller: _controllerSenhaAtual,
-                                              // ignore: missing_return
-                                              /*validator: (value) {
-                                                if (value.isEmpty || value != senha) {
-                                                  return "A senha não corresponde à atual";
-                                                }
-                                              },*/
-                                            ),
-                                            SizedBox(height: 15),
-                                            Text(
-                                              "Nova senha:",
-                                              textAlign: TextAlign.left,
-                                              style: AppTextStyles.labelBold,
-                                            ),
-                                            SizedBox(height: 10),
-                                            TextFormField(
-                                              autofocus: true,
-                                              keyboardType: TextInputType.text,
-                                              style: TextStyle(fontSize: 15),
-                                              decoration: InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.fromLTRB(
-                                                        18, 8, 18, 8),
-                                                hintText:
-                                                    "Digite uma nova senha",
-                                                filled: true,
-                                                fillColor: AppColors.white,
-                                                border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.zero),
-                                              ),
-                                              //controller: _controllerData,
-                                              // ignore: missing_return
-                                              //validator: (value) {
-                                              //  if (value.isEmpty) {
-                                              //    return "Informe um valor válido";
-                                              //  }
-                                              //},
-                                            ),
-                                            SizedBox(height: 10),
-                                            Text(
-                                              "Escolha uma senha com no mínimo 6 caracteres",
-                                              textAlign: TextAlign.left,
-                                              style: AppTextStyles.small,
-                                            ),
-                                            SizedBox(height: 20),
-                                            // ignore: deprecated_member_use
-                                            Center(
-                                              child: ButtonWidget.green(
-                                                  label: "Alterar",
-                                                  onTap: () async {
-                                                    if (_formKey.currentState
-                                                        .validate()) {
-                                                      _editarDados();
-                                                    }
-                                                  }),
-                                            ),
-                                            /*RaisedButton(
-                                              color: Colors.blue,
-                                              textColor: Colors.white,
-                                              child: Text(
-                                                'Entrar',
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              onPressed: () async {
-                                                if (_formKey.currentState
-                                                    .validate()) {
-                                                  _editarDados();
-                                                }
-                                              },
-                                            ),*/
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  })));
-                        },
-                      ),*/
                       SizedBox(height: 15),
                       InkWell(
                         child: Text(
@@ -548,7 +344,7 @@ class _ConfigPageState extends State<ConfigPage> {
                       SizedBox(height: 15),
                       InkWell(
                         child: Text(
-                          "• Desativar Conta",
+                          "• Desativar conta",
                           style: AppTextStyles.menuItemBold,
                         ),
                         onTap: () {
@@ -556,36 +352,59 @@ class _ConfigPageState extends State<ConfigPage> {
                               context: context,
                               builder: (context) => AlertDialog(
                                     title: Text(
-                                      "Deseja deletar a conta?",
+                                      "Deseja desativar a conta?",
                                       textAlign: TextAlign.center,
                                     ),
                                     actions: [
                                       // ignore: deprecated_member_use
                                       Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 10),
-                                        child: Column(
-                                          children: [
-                                            ButtonWidget.green(
-                                              label: "Confirmar",
-                                              onTap: () async {
-                                                _deletarDados();
-                                                await FirebaseAuth.instance
-                                                    .signOut();
-                                                Navigator.pushReplacement(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            InitialPage()));
-                                              },
-                                            ),
-                                          ],
+                                            horizontal: 15, vertical: 5),
+                                        child: Expanded(
+                                          flex: 1,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              ButtonWidget.green(
+                                                label: "Confirmar",
+                                                onTap: () async {
+                                                  _deletarDados();
+                                                  await FirebaseAuth.instance
+                                                      .signOut();
+                                                  Navigator.pushReplacement(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              InitialPage()));
+                                                },
+                                              ),
+                                              ButtonWidget.red(
+                                                label: "Cancelar",
+                                                onTap: () =>
+                                                    Navigator.pop(context),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                      ButtonWidget.red(
-                                        label: "Cancelar",
-                                        onTap: () => Navigator.pop(context),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(height: 50),
+                                          Text(
+                                            "Atenção: esta ação não poderá ser desfeita",
+                                            textAlign: TextAlign.left,
+                                            style: AppTextStyles.small,
+                                          ),
+                                          SizedBox(height: 50),
+                                        ],
                                       ),
                                     ],
                                   ));

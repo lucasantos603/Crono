@@ -1,17 +1,11 @@
 import 'package:CRONO/views/bottomNavigationViews/default_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:CRONO/core/core.dart';
-// import 'package:flutter/scheduler.dart';
-// import 'package:CRONO/core/core.dart';
 import 'package:CRONO/models/Usuario.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
-// import 'package:CRONO/views/initial/initial_page.dart';
-// import 'package:CRONO/shared/widgets/button_widget.dart';
 import 'package:CRONO/views/initial/login/cadastro_page.dart';
-import 'package:CRONO/views/teste/teste_porosidade_page.dart';
 import '../widgets/appbar_widget.dart';
 import '../widgets/footer_widget.dart';
 
@@ -21,8 +15,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // Widget codigoDoBrian() {}
-
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerSenha = TextEditingController();
   String _mensagemErro = "";
@@ -79,8 +71,6 @@ class _LoginPageState extends State<LoginPage> {
           _mensagemErro = "Erro ao autenticar usuário, essa conta não existe";
         });
       }
-
-      //MaterialPageRoute(builder: (context) => TestePorosidadePage()));
     }).catchError((error) {
       setState(() {
         _mensagemErro =
@@ -96,7 +86,6 @@ class _LoginPageState extends State<LoginPage> {
     if (usuarioLogado != null) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => DefaultPage()));
-      //MaterialPageRoute(builder: (context) => TestePorosidadePage()));
     }
   }
 

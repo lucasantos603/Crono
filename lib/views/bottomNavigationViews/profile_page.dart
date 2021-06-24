@@ -40,10 +40,6 @@ class _ProfilePageState extends State<ProfilePage> {
       DocumentSnapshot snapshot =
           await db.collection("usuarios").doc(auth.currentUser.uid).get();
 
-      // print ("Teste");
-      // var dadosJson = json.decode(snapshot.metadata["nome"];
-      //     print ("Teste2");
-      // print (dadosJson["nome"].toString());
       setState(() {
         nome = snapshot['nome'].toString();
         tipodecabelo = snapshot['tipodecabelo'].toString();
@@ -53,12 +49,6 @@ class _ProfilePageState extends State<ProfilePage> {
         email = snapshot['email'].toString();
       });
     }
-    // else{
-    //
-    // Navigator.pushReplacement(context,
-    //       MaterialPageRoute(builder: (context) => login_page()));
-    //
-    //  }
   }
 
   @override
@@ -169,12 +159,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               ]),
                           textAlign: TextAlign.left,
                         ),
-
-                        //Text("Nome :${nome}"),
-                        //Text("Data de nascimento :${date}"),
-                        //Text("Estado :${uf}"),
-                        //Text("Tipo de cabelo :${tipodecabelo}"),
-                        //Text("Teste :${teste}"),
                       ],
                     ),
                   ),

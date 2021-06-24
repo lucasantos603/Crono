@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:CRONO/calendar/add_event_calendar.dart';
 import 'package:CRONO/core/core.dart';
 import 'package:CRONO/views/bottomNavigationViews/config_page.dart';
-// import 'package:CRONO/views/bottomNavigationViews/home_page.dart';
 import 'package:CRONO/views/bottomNavigationViews/content_page.dart';
 import 'package:CRONO/views/bottomNavigationViews/home_pagex.dart';
 import 'package:CRONO/views/bottomNavigationViews/profile_page.dart';
@@ -29,20 +27,6 @@ class _DefaultPageState extends State<DefaultPage> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBarWidget(),
-      /*
-      body: SingleChildScrollView(
-        child: SafeArea(
-          top: true,
-          child: Container(
-            decoration: BoxDecoration(color: AppColors.white),
-            width: double.maxFinite,
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-            child: telas[_indiceAtual],
-          ),
-        ),
-      ),
-      */
-
       body: Container(
         //decoration: BoxDecoration(color: AppColors.white),
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),

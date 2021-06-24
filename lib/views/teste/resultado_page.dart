@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:CRONO/calendar/calendar_widget_bloc.dart';
 import 'package:CRONO/core/core.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
 import 'package:CRONO/views/bottomNavigationViews/default_page.dart';
 import 'package:CRONO/views/initial/widgets/appbar_widget.dart';
-import 'package:CRONO/views/teste/teste_porosidade_page.dart';
 
 class CalendarPage extends StatefulWidget {
   String valor;

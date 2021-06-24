@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-// import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:CRONO/calendar/calendar_widget_bloc.dart';
 import 'package:CRONO/calendar/Marcacao.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
@@ -22,8 +21,6 @@ class _AddEventCalendarState extends State<AddEventCalendar> {
   TextEditingController _marcaController = TextEditingController();
   String etapa = "Escolha";
   DateTime dateTime = DateTime.now();
-  //Tentativa de declarar variável de data em string
-  // String date = selectedDate.toString();
   List<Meeting> meetings = <Meeting>[];
 
   Widget calendario(MeetingDataSource getCalendarDataSource) {
@@ -56,11 +53,7 @@ class _AddEventCalendarState extends State<AddEventCalendar> {
 
       Marcacao marcacao = Marcacao();
       marcacao.nomeProduto = nomeProduto;
-      // Declarando para o _adicionarevento
-      // marcacao.date = date;
       marcacao.etapa = etapa;
-      // Verificando possibilidade de subir os dados pro banco com o id de cada usuário
-      // marcacao.idusuario = idusuario;
 
       _adicionarEvento(marcacao);
     } else if (etapa == "Nutrição") {
@@ -118,7 +111,6 @@ class _AddEventCalendarState extends State<AddEventCalendar> {
               padding: const EdgeInsets.only(top: 25),
               child: ButtonWidget.green(
                 label: "Adicionar",
-                // onTap: () {getCalendarDataSource();}
               ),
             )
           ],

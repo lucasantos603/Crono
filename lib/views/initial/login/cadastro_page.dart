@@ -8,9 +8,6 @@ import 'package:CRONO/core/core.dart';
 import 'package:CRONO/models/Usuario.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
 import 'package:CRONO/views/initial/privacidade_page.dart';
-// import 'package:CRONO/shared/widgets/button_widget.dart';
-// import 'package:CRONO/views/bottomNavigationViews/default_page.dart';
-// import 'package:CRONO/views/initial/login/login_page.dart';
 import 'package:CRONO/views/initial/widgets/appbar_widget.dart';
 import 'package:CRONO/views/initial/widgets/footer_widget.dart';
 import 'package:CRONO/views/teste/teste_porosidade_page.dart';
@@ -23,14 +20,6 @@ class Cadastro extends StatefulWidget {
 
   @override
   _CadastroState createState() => _CadastroState();
-
-  // void signInAnonymously() {
-  //   _auth.signInAnonymously().then((result) {
-  //     setState(() {
-  //       final User user = result.user;
-  //     });
-  //   });
-  // }
 }
 
 class _CadastroState extends State<Cadastro> {
@@ -117,8 +106,6 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController _controllerSenha = TextEditingController();
   TextEditingController _controllerConfirmarsenha = TextEditingController();
   TextEditingController _controllerNome = TextEditingController();
-  // TextEditingController _controllerUF = TextEditingController();
-  // TextEditingController _controllerTipodecabelo = TextEditingController();
 
   _validarCampos() {
     //Recupera dados dos campos
@@ -222,8 +209,6 @@ class _CadastroState extends State<Cadastro> {
             "Erro ao cadastrar usuario, verifique os campos e tente novamente!";
       });
     });
-
-    // print(selectedDate.toString());
   }
 
   int _radioDozeMeses;
@@ -279,7 +264,6 @@ class _CadastroState extends State<Cadastro> {
                                   decoration: InputDecoration(
                                     contentPadding:
                                         EdgeInsets.fromLTRB(18, 8, 18, 8),
-                                    //labelText: 'Nome',
                                     hintText: "Digite seu Nome",
                                     filled: true,
                                     fillColor: AppColors.white,
@@ -302,7 +286,6 @@ class _CadastroState extends State<Cadastro> {
                                   decoration: InputDecoration(
                                     contentPadding:
                                         EdgeInsets.fromLTRB(18, 8, 18, 8),
-                                    //labelText: '​E-mail',
                                     hintText: "Digite seu e-mail",
                                     filled: true,
                                     fillColor: AppColors.white,
@@ -475,7 +458,6 @@ class _CadastroState extends State<Cadastro> {
                                   decoration: InputDecoration(
                                       contentPadding:
                                           EdgeInsets.fromLTRB(18, 8, 18, 8),
-                                      //labelText: 'Senha',
                                       hintText: "Digite sua Senha",
                                       filled: true,
                                       fillColor: Colors.white,
@@ -510,7 +492,6 @@ class _CadastroState extends State<Cadastro> {
                                   decoration: InputDecoration(
                                       contentPadding:
                                           EdgeInsets.fromLTRB(18, 8, 18, 8),
-                                      //labelText: '​Confirmar senha',
                                       hintText: "Confirme a senha",
                                       filled: true,
                                       fillColor: Colors.white,

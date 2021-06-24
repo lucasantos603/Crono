@@ -6,14 +6,9 @@ import 'package:CRONO/views/teste/teste_porosidade_pare_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CalendarWidgetBloc {
-  // void calendarioWidget(String resultado) {}
-
   MeetingDataSource getCalendarDataSource(String resultado) {
     List<Meeting> meetings = <Meeting>[];
     print(resultado);
-    // String resultado = bloc.armazenar[0];
-
-    // print(resultado);
 
     if (resultado == "Boiou") {
       meetings.add(Meeting(

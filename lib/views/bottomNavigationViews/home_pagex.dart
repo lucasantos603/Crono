@@ -55,12 +55,6 @@ class _HomePageState extends State<HomePage> {
         ultimoResultado = snapshot['teste'].toString();
       });
     }
-    // else{
-    //
-    // Navigator.pushReplacement(context,
-    //       MaterialPageRoute(builder: (context) => login_page()));
-    //
-    //  }
   }
 
   _adicionarEvento() async {
@@ -87,8 +81,6 @@ class _HomePageState extends State<HomePage> {
       "usuario": auth.currentUser.uid
     });
   }
-
-  // TextEditingController _nomeProdutoController = _eventController;
 
   String etapa;
 
@@ -139,64 +131,6 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-/*
-  static const List<String> _shortWeekdays = <String>[
-    'S',
-    'T',
-    'Q',
-    'Q',
-    'S',
-    'S',
-    'D',
-  ];
-
-  static const List<String> _shortMonths = <String>[
-    'Jan',
-    'Fev',
-    'Mar',
-    'Abr',
-    'Mai',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Set',
-    'Out',
-    'Nov',
-    'Dez',
-  ];
-
-  static const List<String> _months = <String>[
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro',
-  ];
-
-  @override
-  String datePickerYear(int yearIndex) => yearIndex.toString();
-
-  @override
-  String datePickerMonth(int monthIndex) => _months[monthIndex - 1];
-
-  @override
-  String datePickerDayOfMonth(int dayIndex) => dayIndex.toString();
-
-  @override
-  String datePickerHour(int hour) => hour.toString();
-
-  @override
-  String datePickerHourSemanticsLabel(int hour) => hour.toString() + " Uhr";
-
-  @override
-  String datePickerMinute(int minute) => minute.toString().padLeft(2, '0');*/
 
   int _estagio;
 

@@ -8,7 +8,6 @@ import 'package:CRONO/core/core.dart';
 import 'package:CRONO/shared/widgets/button_widget.dart';
 import 'package:CRONO/views/initial/widgets/appbar_widget.dart';
 import 'package:CRONO/views/teste/resultado_page.dart';
-// import 'package:CRONO/views/teste/teste_controller.dart';
 import 'package:CRONO/views/teste/teste_porosidade_pare_bloc.dart';
 
 class TestePorosidadePage extends StatefulWidget {
@@ -288,54 +287,6 @@ class TestePorosidadePageState extends State<TestePorosidadePage> {
                           ),
                           SizedBox(height: 30),
                           buttonWidgetDemoFuncional(),
-
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          //   children: [
-                          //     GestureDetector(
-                          //       child: Container(
-                          //         decoration:
-                          //             BoxDecoration(border: Border.all()),
-                          //         child: Image.asset(
-                          //           AppImages.copo,
-                          //           width: 50,
-                          //           height: 50,
-                          //         ),
-                          //       ),
-                          //       onTap: () {
-                          //         print("PrimeiroCopo");
-                          //       },
-                          //     ),
-                          //     GestureDetector(
-                          //       child: Container(
-                          //         decoration:
-                          //             BoxDecoration(border: Border.all()),
-                          //         child: Image.asset(
-                          //           AppImages.copo,
-                          //           width: 50,
-                          //           height: 50,
-                          //         ),
-                          //       ),
-                          //       onTap: () {
-                          //         print("Segundo Copo");
-                          //       },
-                          //     ),
-                          //     GestureDetector(
-                          //       child: Container(
-                          //         decoration:
-                          //             BoxDecoration(border: Border.all()),
-                          //         child: Image.asset(
-                          //           AppImages.copo,
-                          //           width: 50,
-                          //           height: 50,
-                          //         ),
-                          //       ),
-                          //       onTap: () {
-                          //         print("Terceiro Copo");
-                          //       },
-                          //     )
-                          //   ],
-                          // ),
                           SizedBox(height: 40),
                         ],
                       ),
