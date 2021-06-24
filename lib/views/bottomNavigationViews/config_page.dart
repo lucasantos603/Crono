@@ -82,6 +82,21 @@ class _ConfigPageState extends State<ConfigPage> {
       }
     }
 
+  /*void _deletarDados() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseFirestore db = FirebaseFirestore.instance;
+
+    db.collection("usuarios").doc(auth.currentUser.uid).delete();
+
+    try {
+      await FirebaseAuth.instance.currentUser.delete();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        print(
+            'The user must reauthenticate before this operation can be executed.');
+      }
+    }*/
+
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
