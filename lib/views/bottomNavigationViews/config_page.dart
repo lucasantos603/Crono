@@ -82,7 +82,7 @@ class _ConfigPageState extends State<ConfigPage> {
       }
     }
 
-  /*void _deletarDados() async {
+    /*void _deletarDados() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -374,6 +374,7 @@ class _ConfigPageState extends State<ConfigPage> {
                                   })));
                         },
                       ),
+                      /*
                       SizedBox(height: 15),
                       InkWell(
                         child: Text(
@@ -498,7 +499,7 @@ class _ConfigPageState extends State<ConfigPage> {
                                     );
                                   })));
                         },
-                      ),
+                      ),*/
                       SizedBox(height: 15),
                       InkWell(
                         child: Text(

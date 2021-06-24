@@ -488,6 +488,12 @@ class _CadastroState extends State<Cadastro> {
                                   textAlign: TextAlign.left,
                                   style: AppTextStyles.small,
                                 ),
+                                SizedBox(height: 10),
+                                Text(
+                                  "Preencha com atenção, não é possível alterar posteriormente",
+                                  textAlign: TextAlign.left,
+                                  style: AppTextStyles.small,
+                                ),
                                 SizedBox(height: 20),
                                 Text(
                                   "Confirme sua senha",
